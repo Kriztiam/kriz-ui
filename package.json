@@ -58,6 +58,7 @@
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
     "stylelint": "stylelint '**/*.{css,scss}'",
     "stylelint:fix": "stylelint '**/*.{css,scss}' --fix",
     "prettier": "prettier --check .",

@@ -10,6 +10,7 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
+    "skipLibCheck": true,
 
     // Module resolution
     "moduleResolution": "bundler",

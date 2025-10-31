@@ -7,7 +7,7 @@ export default function InputCheckbox({
 }: {
   size?: string;
   labelText?: string;
-} & React.InputHTMLAttributes<HTMLInputElement>) {
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">) {
   return (
     <label
       className={styles.Checkbox}
