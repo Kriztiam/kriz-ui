@@ -1,0 +1,57 @@
+.InputColor {
+  margin: 0.25rem 0;
+  height: 2.5rem;
+  width: 2.5rem;
+  position: relative;
+  background-color: hsla(var(--colorBackground), 0.4);
+  border: none;
+  clip-path: var(--shapeBase);
+  cursor: pointer;
+}
+
+.InputColor::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: hsla(var(--fontColor), 0.5);
+  clip-path: var(--shapeBorder);
+  pointer-events: none;
+}
+
+.InputColor::-webkit-color-swatch-wrapper {
+  border: none;
+  padding: 0.25rem;
+}
+
+.InputColor::-webkit-color-swatch,
+.InputColor::-moz-color-swatch {
+  --edgeSize: 0.25rem;
+
+  border: none;
+  clip-path: polygon(
+    0 var(--edgeSize),
+    var(--edgeSize) 0,
+    100% 0,
+    100% calc(100% - var(--edgeSize)),
+    calc(100% - var(--edgeSize)) 100%,
+    0 100%
+  );
+}
+
+.InputColor:focus-visible {
+  outline: none;
+}
+
+.InputColor:focus-visible::after {
+  background-color: hsl(var(--fontColor));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .InputColor:hover::after {
+    background-color: hsla(var(--fontColor), 0.8);
+  }
+}
+
+.InputColor:active::after {
+  background-color: hsl(var(--fontColor));
+}

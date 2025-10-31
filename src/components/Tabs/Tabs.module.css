@@ -1,0 +1,69 @@
+.TabContainer {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.TabButtonsContainer {
+  --fillEmptySpace: auto-fill;
+
+  display: grid;
+  grid-template-rows: min-content;
+  grid-template-columns: repeat(var(--fillEmptySpace), minmax(10rem, 1fr));
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background-color: hsla(var(--fontColor), 0.1);
+  clip-path: var(--shapeBase);
+}
+
+.TabButtonsContainer button {
+  margin: 0;
+  min-height: 1.75rem;
+}
+
+.TabButtonsContainer button::before {
+  display: none;
+}
+
+.TabContainerBackground {
+  padding-bottom: 0.125rem;
+  position: relative;
+}
+
+.TabContainerBackground::before,
+.TabContainerBackground::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.TabContainerBackground::before {
+  background-color: hsla(var(--fontColor), 0.025);
+  clip-path: var(--shapeBase);
+}
+
+.TabContainerBackground::after {
+  background-color: hsla(var(--fontColor), 0.0625);
+  clip-path: var(--shapeBorder);
+}
+
+.TabButtonsContainerBackground {
+  position: relative;
+}
+
+.TabButtonsContainerBackground::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: hsla(var(--fontColor), 0.0625);
+  clip-path: var(--shapeBorder);
+}
+
+.TabContentHidden {
+  display: none;
+}
+
+.TabContentBackground {
+  padding: 0.25rem 0.5rem;
+}

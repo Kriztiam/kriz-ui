@@ -1,0 +1,26 @@
+.Grid {
+  --gridColumnsNumber: 6;
+  --gridColumnsMinSize: 16em;
+  --gridColumnsMaxSize: 1fr;
+  --gridFillEmptyColumns: auto-fill;
+  --gridGap: 0.5em;
+
+  display: grid;
+  grid-template-rows: min-content;
+  grid-template-columns: repeat(
+    var(--gridFillEmptyColumns),
+    minmax(
+      max(
+        var(--gridColumnsMinSize),
+        calc(
+          (100% - (calc(var(--gridColumnsNumber) - 1) * var(--gridGap))) /
+            var(--gridColumnsNumber)
+        )
+      ),
+      var(--gridColumnsMaxSize)
+    )
+  );
+  gap: var(--gridGap);
+  overflow: auto;
+  scrollbar-gutter: stable;
+}

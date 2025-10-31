@@ -1,0 +1,32 @@
+.TextGradient {
+  --gradientAccentColor: hsl(var(--fontColorA));
+  --gradientBaseColor: hsl(var(--colorPrimary500));
+  --gradient1: hsl(from var(--gradientAccentColor) h s l / 0.8);
+  --gradient2: hsl(from var(--gradientAccentColor) h s l / 0.4);
+  --gradient3: hsl(from var(--gradientAccentColor) h s l);
+
+  color: transparent;
+  white-space: nowrap;
+  background: linear-gradient(
+    100deg,
+    var(--gradient1),
+    var(--gradient2),
+    var(--gradient3),
+    var(--gradient2),
+    var(--gradient1)
+  );
+  background-color: hsl(from var(--gradientBaseColor) h s l);
+  background-size: 400% 100%;
+  background-clip: text;
+  animation: background 8s linear infinite;
+}
+
+@keyframes background {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 400% 50%;
+  }
+}

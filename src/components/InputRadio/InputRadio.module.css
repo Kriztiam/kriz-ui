@@ -1,0 +1,65 @@
+.InputRadio {
+  font-size: var(--size, 1rem);
+  margin: 0.5em 0.25em;
+  margin-left: 0;
+  width: fit-content;
+  height: 1.5em;
+  padding-right: 0.5em;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.InputRadio input {
+  --size: 1.5em;
+  --boxBorder: calc(var(--size) * 0.707107 * 0.125);
+  --boxSize: calc(var(--size) * 0.707107 - var(--boxBorder) * 3);
+
+  appearance: none;
+  width: var(--boxSize);
+  height: var(--boxSize);
+  margin: 0 var(--boxSize);
+  outline: var(--boxBorder) solid hsla(var(--fontColor), 0.8);
+  outline-offset: var(--boxBorder);
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.InputRadio input:checked {
+  background-color: hsla(var(--fontColor), 0.8);
+}
+
+.InputRadio input:focus-visible {
+  outline-color: hsl(var(--fontColor));
+}
+
+.InputRadio input:checked:focus-visible {
+  background-color: hsl(var(--fontColor));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .InputRadio input:hover {
+    outline-color: hsl(var(--fontColor));
+  }
+
+  .InputRadio input:checked:hover {
+    background-color: hsl(var(--fontColor));
+  }
+}
+
+.InputRadio input:active {
+  outline-color: hsla(var(--fontColor), 0.5);
+}
+
+.InputRadio:has(input:disabled) {
+  color: hsla(var(--fontColor), 0.25);
+}
+
+.InputRadio input:disabled {
+  background-color: transparent;
+  outline-color: hsla(var(--fontColor), 0.25);
+}
+
+.InputRadioInline {
+  display: inline-flex;
+}

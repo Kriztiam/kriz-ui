@@ -1,0 +1,108 @@
+.Button {
+  --size: 1em;
+  --color: hsl(var(--fontColorA));
+  --edgeSize: 0.4em;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5em;
+  min-width: 2.25em;
+  min-height: 2.25em;
+  font-size: var(--size);
+  text-transform: uppercase;
+  line-height: 1;
+  color: hsl(from var(--color) h s l / 0.8);
+  background-color: transparent;
+  border: none;
+  isolation: isolate;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  vertical-align: top;
+  gap: 0.25em;
+  clip-path: polygon(
+    0 var(--edgeSize),
+    var(--edgeSize) 0,
+    100% 0,
+    100% calc(100% - var(--edgeSize)),
+    calc(100% - var(--edgeSize)) 100%,
+    0 100%
+  );
+}
+
+.ButtonSolid {
+  background-color: hsl(from var(--color) h s l / 0.8);
+  color: hsl(var(--colorBackground));
+}
+
+.ButtonOutline::before {
+  --borderWidth: 0.1em;
+  --separation: calc(var(--edgeSize) + var(--borderWidth) * 0.414214);
+
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: hsl(from var(--color) h s l / 0.8);
+  clip-path: polygon(
+    0 var(--edgeSize),
+    var(--edgeSize) 0,
+    100% 0,
+    100% calc(100% - var(--edgeSize)),
+    calc(100% - var(--edgeSize)) 100%,
+    0 100%,
+    0 var(--edgeSize),
+    var(--borderWidth) var(--separation),
+    var(--borderWidth) calc(100% - var(--borderWidth)),
+    calc(100% - var(--separation)) calc(100% - var(--borderWidth)),
+    calc(100% - var(--borderWidth)) calc(100% - var(--separation)),
+    calc(100% - var(--borderWidth)) var(--borderWidth),
+    var(--separation) var(--borderWidth),
+    var(--borderWidth) var(--separation)
+  );
+}
+
+.ButtonSolid:focus-visible,
+.ButtonOutline:focus-visible::before {
+  background-color: hsl(from var(--color) h s l);
+}
+
+.ButtonOutline:focus-visible {
+  color: hsl(from var(--color) h s l);
+  background-color: hsl(from var(--color) h s l / 0.025);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ButtonSolid:hover,
+  .ButtonOutline:hover::before {
+    background-color: hsl(from var(--color) h s l);
+  }
+
+  .ButtonOutline:hover {
+    color: hsl(from var(--color) h s l);
+    background-color: hsl(from var(--color) h s l / 0.025);
+  }
+}
+
+.ButtonSolid:active,
+.ButtonOutline:active::before {
+  background-color: hsl(from var(--color) h s l / 0.5);
+}
+
+.ButtonOutline:active {
+  color: hsl(from var(--color) h s l / 0.5);
+  background-color: hsl(from var(--color) h s l / 0.025);
+}
+
+.ButtonSolid:disabled,
+.ButtonOutline:disabled::before {
+  background-color: hsl(from var(--color) h s l / 0.25);
+  cursor: unset;
+}
+
+.ButtonOutline:disabled {
+  background-color: transparent;
+  color: hsl(from var(--color) h s l / 0.25);
+  cursor: unset;
+}

@@ -1,0 +1,118 @@
+.Range {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  position: relative;
+  background-color: hsla(var(--fontColor), 0.05);
+  clip-path: var(--shapeBase);
+}
+
+.Range::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: hsla(var(--fontColor), 0.5);
+  clip-path: var(--shapeBorder);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.Range label {
+  color: hsla(var(--fontColor), 0.8);
+}
+
+.Range output {
+  margin-top: 0.25em;
+  padding: 0 0.5em;
+  width: fit-content;
+  display: block;
+  font-size: var(--fontSize300);
+  white-space: nowrap;
+  border: 0.0625rem solid hsla(var(--fontColor), 0.75);
+  border-radius: 0.125rem;
+}
+
+.RangeInput,
+.RangeInput::-webkit-slider-runnable-track,
+.RangeInput::-webkit-slider-thumb {
+  appearance: none;
+}
+
+.RangeInput {
+  padding: 1rem 0.5rem 0.5rem;
+  width: 100%;
+  display: block;
+  background: transparent;
+  cursor: pointer;
+}
+
+.RangeInput::-webkit-slider-runnable-track,
+.RangeInput::-moz-range-track {
+  height: 0.125rem;
+  background: linear-gradient(
+    to right,
+    hsla(var(--fontColorA)) 0,
+    hsla(var(--fontColorA)) var(--positionValue),
+    transparent var(--positionValue)
+  );
+  background-color: hsl(var(--fontColor), 0.2);
+}
+
+.RangeInput:focus-visible::-webkit-slider-runnable-track,
+.RangeInput:focus-visible::-moz-range-track {
+  background-color: hsla(var(--fontColor), 0.4);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .RangeInput:hover::-webkit-slider-runnable-track,
+  .RangeInput:hover::-moz-range-track {
+    background-color: hsla(var(--fontColor), 0.4);
+  }
+}
+
+.RangeInput:active::-webkit-slider-runnable-track,
+.RangeInput:active::-moz-range-track {
+  background-color: hsla(var(--fontColor), 0.25);
+}
+
+.RangeInput::-webkit-slider-thumb,
+.RangeInput::-moz-range-thumb {
+  --size: 1.5em;
+  --boxBorder: calc(var(--size) * 0.707107 * 0.125);
+  --boxSize: calc(var(--size) * 0.707107 - var(--boxBorder) * 3);
+
+  width: var(--boxSize);
+  height: var(--boxSize);
+  margin-top: calc(var(--boxSize) * -0.5 + 0.0625rem);
+  background-color: hsl(var(--fontColorA));
+  outline: var(--boxBorder) solid hsla(var(--fontColorA), 0.8);
+  outline-offset: var(--boxBorder);
+  transform: rotate(45deg);
+}
+
+.RangeInput:focus-visible::-webkit-slider-thumb,
+.RangeInput:focus-visible::-moz-range-thumb {
+  outline-color: hsl(var(--fontColorA));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .RangeInput:hover::-webkit-slider-thumb,
+  .RangeInput:hover::-moz-range-thumb {
+    outline-color: hsl(var(--fontColorA));
+  }
+}
+
+.RangeInput:active::-webkit-slider-thumb,
+.RangeInput:active::-moz-range-thumb {
+  outline-color: hsla(var(--fontColorA), 0.5);
+}
+
+.RangeMinMax {
+  padding: 0 0.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: var(--fontSize100);
+  color: hsla(var(--fontColor), 0.8);
+  user-select: none;
+}

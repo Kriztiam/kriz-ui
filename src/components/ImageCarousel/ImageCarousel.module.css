@@ -1,0 +1,81 @@
+.CarouselImageContainer {
+  padding: 0.25rem;
+  width: 100%;
+  height: var(--height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: hsla(var(--fontColor), 0.025);
+}
+
+.CarouselImage {
+  width: auto;
+  height: 100%;
+}
+
+.CarouselImage > button {
+  max-width: none;
+  height: 100%;
+  width: 100%;
+}
+
+.CarouselImage > button > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ChangeImgButtons {
+  padding: 0.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: hsla(var(--fontColor), 0.05);
+}
+
+.ItemImagesDotsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+.ItemImagesDot {
+  border: none;
+  height: 0.5rem;
+  width: 0.5rem;
+  margin: 0 0.5rem;
+  background-color: hsla(var(--fontColorA), 0.4);
+  outline: 0.125em solid transparent;
+  outline-offset: 0.125em;
+  cursor: pointer;
+  transform: rotate(45deg);
+  transition: background-color 200ms;
+}
+
+.ItemImagesDot:focus-visible {
+  background-color: hsla(var(--fontColorA), 0.8);
+  outline-color: hsla(var(--fontColorA), 0.5);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ItemImagesDot:hover {
+    background-color: hsla(var(--fontColorA), 0.8);
+    outline-color: hsla(var(--fontColorA), 0.5);
+  }
+}
+
+.ItemImagesDot:active {
+  background-color: hsla(var(--fontColorA), 0.6);
+  outline-color: hsla(var(--fontColorA), 0.25);
+}
+
+.ChangeImgButtons:hover .ItemImagesDot {
+  background-color: hsla(var(--fontColorA), 0.8);
+}
+
+.ItemImagesDotSelected {
+  background-color: hsl(var(--fontColorA)) !important;
+  outline-color: hsl(var(--fontColorA));
+}

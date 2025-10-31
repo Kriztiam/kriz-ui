@@ -1,0 +1,109 @@
+.Checkbox {
+  --size: 1.5em;
+  --halfSize: calc(var(--size) * 0.5);
+  --boxBorder: calc(var(--size) * 0.707107 * 0.125);
+  --boxSize: calc(var(--size) * 0.707107 - var(--boxBorder) * 3);
+  --borderSize: calc(var(--boxBorder) * 1.414214);
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0.25em 0;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.Checkbox input {
+  opacity: 0;
+  width: calc(var(--size) * 2);
+  height: calc(var(--size));
+  margin-right: 0.25em;
+  cursor: pointer;
+}
+
+.Checkbox span {
+  position: absolute;
+  width: calc(var(--size) * 2);
+  height: calc(var(--size));
+  clip-path: polygon(
+    0% 50%,
+    var(--halfSize) 100%,
+    calc(100% - var(--halfSize)) 100%,
+    100% 50%,
+    calc(100% - var(--halfSize)) 0%,
+    var(--halfSize) 0%
+  );
+  cursor: pointer;
+  transition: background-color 100ms;
+}
+
+.Checkbox span::before {
+  content: "";
+  position: absolute;
+  width: calc(var(--size) * 2);
+  height: calc(var(--size));
+  background-color: hsla(var(--fontColor), 0.8);
+  clip-path: polygon(
+    0% 50%,
+    var(--halfSize) 100%,
+    calc(100% - var(--halfSize)) 100%,
+    100% 50%,
+    calc(100% - var(--halfSize)) 0%,
+    var(--halfSize) 0%,
+    0% 50%,
+    var(--borderSize) 50%,
+    calc(var(--halfSize) + var(--borderSize) * 0.25)
+      calc(var(--borderSize) * 0.75),
+    calc(100% - var(--halfSize) - var(--borderSize) * 0.25)
+      calc(var(--borderSize) * 0.75),
+    calc(100% - var(--borderSize)) 50%,
+    calc(100% - var(--halfSize) - var(--borderSize) * 0.25)
+      calc(100% - var(--borderSize) * 0.75),
+    calc(var(--halfSize) + var(--borderSize) * 0.25)
+      calc(100% - var(--borderSize) * 0.75),
+    var(--borderSize) 50%
+  );
+}
+
+.Checkbox span::after {
+  content: "";
+  margin: calc(
+    var(--boxSize) * 1.414214 * 0.5 - var(--boxSize) * 0.5 + var(--boxBorder) /
+      1.414214 * 3
+  );
+  width: var(--boxSize);
+  height: var(--boxSize);
+  position: absolute;
+  top: 0;
+  left: calc(var(--borderSize) * 0.5);
+  background-color: hsl(var(--fontColor));
+  transform: rotate(45deg);
+  transition: left 100ms;
+}
+
+.Checkbox:has(input:focus-visible) span::before {
+  background-color: hsl(var(--fontColor));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .Checkbox span:hover::before {
+    background-color: hsl(var(--fontColor));
+  }
+}
+
+.Checkbox span:active::before {
+  background-color: hsla(var(--fontColor), 0.5);
+}
+
+.Checkbox input:checked + span {
+  background-color: hsla(var(--colorSuccess), 0.8);
+}
+
+.Checkbox input:checked + span::after {
+  left: calc(var(--size) - var(--borderSize) * 0.5);
+}
+
+.Checkbox input:disabled + span::before,
+.Checkbox input:disabled + span::after {
+  background-color: hsla(var(--fontColor), 0.25);
+}

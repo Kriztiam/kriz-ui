@@ -1,0 +1,243 @@
+:root {
+  /* Colors in "H, S, L" format */
+  --colorInfo: 205, 100%, 40%;
+  --colorSuccess: 120, 40%, 45%;
+  --colorWarning: 50, 100%, 30%;
+  --colorError: 0, 65%, 50%;
+
+  --colorBackground: 223, 10%, 5%;
+  --colorBackgroundA: var(--colorPrimary950);
+
+  --fontColor: 0, 0%, 100%;
+  --fontColorA: var(--colorPrimary100A);
+
+  /* Used to change black or white icons and logos to the opposite color when the theme changes using filter: invert(var(--invertImagesColor)); */
+  --invertImagesColor: 1;
+
+  /* Font Sizes */
+  --fontSize100: 0.75rem;
+  --fontSize200: 0.8125rem;
+  --fontSize300: 0.875rem;
+  --fontSize400: 1rem;
+  --fontSize500: 1.375rem;
+  --fontSize600: 1.5rem;
+  --fontSize700: 1.75rem;
+  --fontSize800: 2rem;
+  --fontSize900: 2.25rem;
+  --fontSize1000: 3rem;
+
+  /* Shapes */
+  --edgeSize: 0.375em;
+  --shapeBase: polygon(
+    0 var(--edgeSize),
+    var(--edgeSize) 0,
+    100% 0,
+    100% calc(100% - var(--edgeSize)),
+    calc(100% - var(--edgeSize)) 100%,
+    0 100%
+  );
+
+  --borderWidth: 0.0625em;
+  --separation: calc(var(--edgeSize) + var(--borderWidth) * 0.414214);
+  --shapeBorder: polygon(
+    0 var(--edgeSize),
+    var(--edgeSize) 0,
+    100% 0,
+    100% calc(100% - var(--edgeSize)),
+    calc(100% - var(--edgeSize)) 100%,
+    0 100%,
+    0 var(--edgeSize),
+    var(--borderWidth) var(--separation),
+    var(--borderWidth) calc(100% - var(--borderWidth)),
+    calc(100% - var(--separation)) calc(100% - var(--borderWidth)),
+    calc(100% - var(--borderWidth)) calc(100% - var(--separation)),
+    calc(100% - var(--borderWidth)) var(--borderWidth),
+    var(--separation) var(--borderWidth),
+    var(--borderWidth) var(--separation)
+  );
+}
+
+[data-theme="light"] {
+  --colorBackground: 223, 5%, 95%;
+  --colorBackgroundA: var(--colorPrimary050);
+  --fontColor: 0, 0%, 0%;
+  --fontColorA: var(--colorPrimary400A);
+  --invertImagesColor: 0;
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: hsl(var(--colorBackground));
+  color: hsl(var(--fontColor));
+  font-family: var(--fontStack);
+  line-height: 1.25;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+a {
+  text-decoration-skip-ink: auto;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+input[type="checkbox"],
+input[type="radio"],
+input[type="range"],
+progress {
+  accent-color: hsl(var(--fontColorA));
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsla(var(--fontColor), 0.8);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--fontColor));
+  }
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: hsla(var(--fontColor), 0.5);
+}
+
+::selection {
+  background: hsl(var(--colorPrimary400A));
+  color: white;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+h1 {
+  font-size: var(--fontSize1000);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: normal;
+}
+
+h2 {
+  font-size: var(--fontSize900);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: var(--fontSize800);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+h4 {
+  font-size: var(--fontSize700);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+h5 {
+  font-size: var(--fontSize600);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+h6 {
+  font-size: var(--fontSize500);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+p {
+  font-size: var(--fontSize400);
+  font-weight: 400;
+  letter-spacing: 0.003125em;
+}
+
+kbd {
+  padding: 0 0.5em;
+  height: 1.75em;
+  min-width: 1.75em;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(var(--colorBackground));
+  color: hsl(var(--fontColor));
+  font-size: var(--fontSize100);
+  font-weight: 500;
+  line-height: 1.5em;
+  text-size-adjust: 100%;
+  font-family: sans-serif;
+  letter-spacing: 0.03125em;
+  border: 0.1em solid hsla(var(--fontColor), 0.4);
+  border-radius: 0.25rem;
+}
+
+code {
+  font-size: var(--fontSize300);
+  direction: ltr;
+  padding: 0.125em 0.25em;
+  color: hsl(var(--fontColorA));
+  background-color: hsl(var(--colorBackgroundA));
+  overflow-wrap: anywhere;
+}
+
+pre {
+  padding: 1em;
+  background-color: hsl(var(--colorBackgroundA));
+  text-wrap-mode: wrap;
+}
+
+pre > code {
+  padding: 0;
+  background-color: transparent;
+}

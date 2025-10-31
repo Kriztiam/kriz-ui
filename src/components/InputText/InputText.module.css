@@ -1,0 +1,178 @@
+.InputContainer {
+  margin: 0.5rem 0;
+  position: relative;
+}
+
+.InputContainer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: hsla(var(--fontColor), 0.5);
+  clip-path: var(--shapeBorder);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .InputContainer:hover::before {
+    background-color: hsla(var(--fontColor), 0.8);
+  }
+}
+
+.InputContainer:has(input:focus-visible)::before {
+  background-color: hsl(var(--fontColor));
+}
+
+.InputContainer label {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 2.5rem;
+  padding: 0 0.5rem;
+  color: hsla(var(--fontColor), 0.8);
+  pointer-events: none;
+  transition:
+    line-height 100ms ease-in-out,
+    font-size 100ms ease-in-out,
+    top 100ms ease-in-out,
+    left 100ms ease-in-out;
+}
+
+.InputContainer input {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0.25em 0.5em;
+  font-family: var(--fontStack);
+  background-color: hsla(var(--fontColor), 0.05);
+  color: hsl(var(--fontColor));
+  border: none;
+  outline: none;
+  clip-path: var(--shapeBase);
+}
+
+.InputContainer input::placeholder {
+  color: transparent;
+}
+
+.InputContainer input:focus-visible,
+.InputContainer input:not(:placeholder-shown) {
+  padding: 1rem 0.5rem 0.25rem;
+}
+
+.InputContainer input:focus-visible ~ label,
+.InputContainer input:not(:placeholder-shown) ~ label {
+  font-size: var(--fontSize100);
+  line-height: 1rem;
+  top: 0.125rem;
+}
+
+.InputContainer input:focus-visible ~ label {
+  color: hsl(var(--fontColor));
+}
+
+.InputContainer input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.InputContainer input[type="number"] {
+  appearance: textfield;
+}
+
+.InputContainer input[type="number"]::-webkit-outer-spin-button,
+.InputContainer input[type="number"]::-webkit-inner-spin-button {
+  appearance: none;
+}
+
+.InputWithIcon input,
+.InputWithIcon label {
+  padding-left: 2.5rem;
+}
+
+.InputWithIcon input:focus-visible,
+.InputWithIcon input:not(:placeholder-shown) {
+  padding-left: 2.5rem;
+}
+
+.InputIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .InputWithIcon:has(input:hover) .InputIcon {
+    opacity: 0.8;
+  }
+}
+
+.InputWithIcon:has(input:focus-visible) .InputIcon {
+  opacity: 1;
+}
+
+.InputButton {
+  border: none;
+  background-color: transparent;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--fontColor));
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.InputButton:focus-visible {
+  opacity: 0.8;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .InputButton:hover {
+    opacity: 0.8;
+  }
+}
+
+.InputButton:active {
+  opacity: 1;
+}
+
+.InputButtonRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.InputContainer input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.InputButtonSearch {
+  display: none;
+}
+
+.InputContainer:has(input:not(:placeholder-shown)) .InputButtonSearch {
+  display: flex;
+}
+
+.InputButtonNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.InputButtonNumber span {
+  width: 0.125rem;
+  height: 2rem;
+  background-color: hsla(var(--fontColor), 0.1);
+}

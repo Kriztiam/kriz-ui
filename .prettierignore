@@ -1,0 +1,19 @@
+# Build artifacts
+.vscode/
+.idea/
+.next/
+.turbo/
+_next/
+__tmp__/
+build/
+dist/
+target/
+compiled/
+node_modules/
+*.min.js
+*.map
+*.snap
+
+lerna.json
+test-timings.json
+pnpm-lock.yaml

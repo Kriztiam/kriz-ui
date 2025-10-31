@@ -1,0 +1,61 @@
+.Notification {
+  --notificationColor: 0, 0%, 30%;
+  --size: 1rem;
+
+  font-size: var(--size);
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  min-width: 18em;
+  width: fit-content;
+  max-width: 50vw;
+  padding: 0.5em 1em;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  background-color: hsl(var(--notificationColor));
+  color: white;
+  clip-path: var(--shapeBase);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.NotificationIcon {
+  margin-right: 0.5rem;
+  display: flex;
+  font-size: 1em;
+}
+
+.Notification p {
+  font-size: 0.875em;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+.NotificationActive {
+  opacity: 1;
+}
+
+.NotificationBottom {
+  top: auto;
+  bottom: 1rem;
+}
+
+.NotificationLeft {
+  left: 1rem;
+  transform: none;
+}
+
+.NotificationRight {
+  left: auto;
+  right: 1rem;
+  transform: none;
+}

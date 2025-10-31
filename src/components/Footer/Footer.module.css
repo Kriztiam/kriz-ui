@@ -1,0 +1,186 @@
+.Footer {
+  background-color: hsla(var(--fontColor), 0.05);
+  border-top: 0.0625rem solid hsla(var(--fontColor), 0.1);
+  backdrop-filter: blur(4px);
+}
+
+.FooterTopContent {
+  padding: 1em;
+  border-bottom: 0.0625rem solid hsla(var(--fontColor), 0.1);
+}
+
+.FooterMainContent {
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2.5rem;
+}
+
+.FooterMainContentLogoContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.FooterMainContentLogo {
+  --barHeight: 2.5rem;
+
+  width: fit-content;
+  height: var(--barHeight);
+  gap: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.FooterMainContentLogo img {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  min-width: var(--barHeight);
+  user-select: none;
+  filter: invert(var(--invertImagesColor));
+}
+
+.FooterMainContentLogo span {
+  font-size: var(--fontSize600);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+}
+
+.FooterMainContentBelowLogo {
+  padding-bottom: 1rem;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  color: hsla(var(--fontColor), 0.8);
+  border-bottom: 0.0625rem solid hsla(var(--fontColor), 0.1);
+}
+
+.FooterMainContentBelowLogo * {
+  font-size: var(--fontSize300);
+}
+
+.FooterMainContentBelowLogo a {
+  color: inherit;
+}
+
+.FooterMainContentBelowLogo a:focus-visible {
+  color: hsl(var(--fontColor));
+  text-decoration: underline;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .FooterMainContentBelowLogo a:hover {
+    color: hsl(var(--fontColor));
+    text-decoration: underline;
+  }
+}
+
+.FooterMainContentBelowLogo a:active {
+  color: hsla(var(--fontColor), 0.5);
+  text-decoration: underline;
+}
+
+.FooterMainContentLinks h3 {
+  font-size: var(--fontSize400);
+  font-weight: 500;
+  line-height: 2;
+  text-transform: uppercase;
+  text-wrap: nowrap;
+}
+
+.FooterMainContentLinks li {
+  list-style: none;
+  color: hsla(var(--fontColor), 0.8);
+  font-size: var(--fontSize300);
+  font-weight: 400;
+  line-height: 2;
+}
+
+.FooterMainContentLinks a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.FooterMainContentLinks a:focus-visible {
+  color: hsl(var(--fontColor));
+  text-decoration: underline;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .FooterMainContentLinks a:hover {
+    color: hsl(var(--fontColor));
+    text-decoration: underline;
+  }
+}
+
+.FooterMainContentLinks a:active {
+  color: hsla(var(--fontColor), 0.5);
+  text-decoration: underline;
+}
+
+.FooterBottom {
+  padding: 1em;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-top: 0.0625rem solid hsla(var(--fontColor), 0.1);
+}
+
+.FooterBottom:has(> div > *) {
+  gap: 1em;
+}
+
+.FooterBottom > div p {
+  font-size: var(--fontSize200);
+  color: hsla(var(--fontColor), 0.8);
+}
+
+.FooterBottom > div a {
+  color: inherit;
+}
+
+.FooterBottom > div a:focus-visible {
+  color: hsl(var(--fontColor));
+  text-decoration: underline;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .FooterBottom > div a:hover {
+    color: hsl(var(--fontColor));
+    text-decoration: underline;
+  }
+}
+
+.FooterBottom > div a:active {
+  color: hsla(var(--fontColor), 0.5);
+  text-decoration: underline;
+}
+
+.FooterBottom > nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@media (min-width: 1024px) {
+  .FooterMainContentLogoContainer:has(> div:nth-child(2)) {
+    width: 25%;
+    border-right: 0.0625rem solid hsla(var(--fontColor), 0.1);
+  }
+
+  .FooterMainContentBelowLogo {
+    border: none;
+  }
+
+  .FooterBottom {
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+  }
+}

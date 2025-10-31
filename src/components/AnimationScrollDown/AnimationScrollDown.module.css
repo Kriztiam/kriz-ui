@@ -1,0 +1,40 @@
+@keyframes scroll-down {
+  0% {
+    right: var(--borderWidth);
+    bottom: var(--borderWidth);
+  }
+
+  100% {
+    right: calc(var(--borderWidth) * 2);
+    bottom: calc(var(--borderWidth) * 2);
+  }
+}
+
+.ScrollDown {
+  --color: hsl(var(--fontColor));
+  --size: 1em;
+  --sideSize: calc(var(--size) * 0.75);
+  --borderWidth: calc(var(--sideSize) * 0.1);
+
+  display: inline-block;
+  position: relative;
+  margin: calc(var(--size) * 0.25);
+  width: var(--sideSize);
+  height: var(--sideSize);
+  outline: var(--borderWidth) solid hsl(from var(--color) h s l / 0.1);
+  outline-offset: calc(var(--borderWidth) * -1);
+  transform: rotate(45deg);
+}
+
+.ScrollDown::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: var(--borderWidth);
+  bottom: var(--borderWidth);
+  width: calc(var(--sideSize) - var(--borderWidth) * 3);
+  height: calc(var(--sideSize) - var(--borderWidth) * 3);
+  background-color: hsl(from var(--color) h s l);
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  animation: scroll-down 400ms linear infinite alternate-reverse;
+}

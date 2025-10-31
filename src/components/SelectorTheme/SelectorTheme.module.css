@@ -1,0 +1,34 @@
+.SwitchContainer {
+  width: fit-content;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.IconDark,
+.IconLight {
+  position: absolute;
+  pointer-events: none;
+}
+
+.IconDark {
+  left: 0;
+}
+
+.IconLight {
+  right: 0;
+}
+
+.SelectorTheme > span label {
+  padding: 0 1.75rem;
+}
+
+.SelectorTheme > span label > input {
+  margin-right: 0;
+}
+
+.SelectorTheme > input {
+  width: 6.5rem;
+  height: 2rem;
+}

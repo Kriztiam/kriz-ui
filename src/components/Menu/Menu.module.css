@@ -1,0 +1,218 @@
+.DetailsContainer {
+  display: inline-block;
+  position: relative;
+}
+
+.DetailsSummary {
+  --color: hsl(var(--fontColorA));
+
+  list-style: none;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.25em 0.5em;
+  width: 100%;
+  min-width: 2.25em;
+  min-height: 2.25em;
+  font-size: var(--fontSize400);
+  text-transform: uppercase;
+  line-height: 1;
+  background-color: hsl(from var(--color) h s l / 0.8);
+  color: hsl(var(--colorBackground));
+  isolation: isolate;
+  vertical-align: top;
+  user-select: none;
+  cursor: pointer;
+  gap: 0.25em;
+  clip-path: var(--shapeBase);
+}
+
+.DetailsSummary:focus-visible {
+  background-color: hsl(from var(--color) h s l);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .DetailsSummary:hover {
+    background-color: hsl(from var(--color) h s l);
+  }
+}
+
+.DetailsSummary:active {
+  background-color: hsl(from var(--color) h s l / 0.5);
+}
+
+.DetailsSummaryArrow {
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.DetailsSummaryAsText {
+  background-color: transparent;
+  color: inherit;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.DetailsSummaryAsText:focus-visible {
+  background-color: hsla(var(--fontColor), 0.075);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .DetailsSummaryAsText:hover {
+    background-color: hsla(var(--fontColor), 0.075);
+  }
+}
+
+.DetailsSummaryAsText:active {
+  background-color: hsla(var(--fontColor), 0.05);
+}
+
+.MenuContainer {
+  min-width: fit-content;
+  padding: 0.25em !important;
+  position: absolute !important;
+  display: none;
+  background-color: hsl(var(--colorBackground)) !important;
+  z-index: 1000;
+}
+
+.DetailsContainer[open] .MenuContainer {
+  display: block;
+}
+
+.MenuFromTop {
+  bottom: 2.25em;
+}
+
+.MenuFromRight {
+  right: 0;
+}
+
+.Menu {
+  min-width: fit-content;
+  overflow-y: auto;
+}
+
+.Menu li {
+  box-sizing: border-box;
+  list-style: none;
+  width: 100%;
+  min-height: 2.25em;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.0125em;
+  cursor: pointer;
+  clip-path: var(--shapeBase);
+}
+
+.Menu li:has(> details) {
+  padding: 0;
+}
+
+.Menu li:has(*:focus-visible) {
+  background-color: hsla(var(--fontColor), 0.1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .Menu li:hover {
+    background-color: hsla(var(--fontColor), 0.1);
+  }
+}
+
+.Menu li:active {
+  background-color: hsla(var(--fontColor), 0.05);
+}
+
+.Menu li a {
+  color: inherit;
+  text-decoration: none;
+  text-wrap: nowrap;
+}
+
+.Menu > li > * {
+  width: 100%;
+  padding: 0.25em 0.5em;
+}
+
+.Menu > li:not(:has(> *)) {
+  padding: 0.25em 0.5em;
+}
+
+.Menu li:has(> hr) {
+  min-height: auto;
+  cursor: auto;
+  clip-path: none;
+}
+
+.Menu li > hr {
+  padding: 0;
+}
+
+.SubMenu {
+  padding: 0 !important;
+}
+
+.SubMenu * {
+  box-sizing: border-box;
+}
+
+.SubMenu[open] {
+  background-color: hsla(var(--fontColor), 0.05);
+  clip-path: var(--shapeBase);
+}
+
+.SubMenuSummary {
+  list-style: none;
+  width: 100%;
+  min-height: 2.25em;
+  padding: 0.25em 0.5em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  color: inherit;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.0125em;
+  text-transform: uppercase;
+  vertical-align: top;
+  cursor: pointer;
+  clip-path: var(--shapeBase);
+  white-space: nowrap;
+}
+
+.SubMenuSummary:focus-visible {
+  background-color: hsla(var(--fontColor), 0.1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .SubMenuSummary:hover {
+    background-color: hsla(var(--fontColor), 0.1);
+  }
+}
+
+.SubMenuSummary:active {
+  background-color: hsla(var(--fontColor), 0.05);
+}
+
+.SubMenuSummary svg {
+  margin-left: 1em;
+}
+
+.SubMenu[open] .DetailsSummaryArrow {
+  transform: rotate(180deg);
+}
+
+.SubMenu menu {
+  margin-left: 1.5em;
+  min-width: fit-content;
+  overflow-y: auto;
+}
+
+.SubMenu menu li:not(:has(summary)) {
+  padding: 0.25em 0.5em;
+}

@@ -1,0 +1,272 @@
+.InputContainer {
+  margin: 0.5rem 0;
+  position: relative;
+}
+
+.InputContainer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: hsla(var(--fontColor), 0.5);
+  clip-path: var(--shapeBorder);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .InputContainer:hover::before {
+    background-color: hsla(var(--fontColor), 0.8);
+  }
+}
+
+.InputContainer:has(input:focus-visible)::before {
+  background-color: hsl(var(--fontColor));
+}
+
+.InputContainer label {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 2.5rem;
+  padding: 0 0.5rem;
+  color: hsla(var(--fontColor), 0.8);
+  pointer-events: none;
+  transition:
+    line-height 100ms ease-in-out,
+    font-size 100ms ease-in-out,
+    top 100ms ease-in-out,
+    left 100ms ease-in-out;
+}
+
+.InputContainer input {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0.25em 0.5em;
+  padding-right: 2em;
+  font-family: var(--fontStack);
+  background-color: hsla(var(--fontColor), 0.05);
+  color: hsl(var(--fontColor));
+  border: none;
+  outline: none;
+  clip-path: var(--shapeBase);
+  cursor: pointer;
+}
+
+.InputContainer input::placeholder {
+  color: transparent;
+}
+
+.InputContainer input:focus-visible,
+.InputContainer input:not(:placeholder-shown) {
+  padding: 1em 2.5em 0.25em 0.5em;
+}
+
+.InputContainer input:focus-visible ~ label,
+.InputContainer input:not(:placeholder-shown) ~ label {
+  font-size: var(--fontSize100);
+  line-height: 1rem;
+  top: 0.125rem;
+}
+
+.InputContainer input:focus-visible ~ label {
+  color: hsl(var(--fontColor));
+}
+
+.InputSelectMultiple {
+  position: relative;
+}
+
+.ClearButton {
+  border: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--fontColor));
+  background-color: transparent;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.ClearButton:focus-visible {
+  opacity: 0.8;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ClearButton:hover {
+    opacity: 0.8;
+  }
+}
+
+.ClearButton:active {
+  opacity: 1;
+}
+
+.Arrow {
+  position: absolute;
+  top: 0.625em;
+  right: 0.75em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--fontColor));
+  opacity: 0.5;
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.InputContainer:has(input:focus-visible) .Arrow {
+  opacity: 0.8;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .InputContainer:has(input:hover) .Arrow {
+    opacity: 0.8;
+  }
+}
+
+.InputContainer:has(input:active) .Arrow {
+  opacity: 1;
+}
+
+.SelectedContainer {
+  width: calc(100% - 0.25rem);
+  padding: 0.5em;
+  padding-right: 2.25em;
+  position: relative;
+  display: none;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  border-top: 0.0625rem solid hsla(var(--fontColor), 0.4);
+  background-color: hsla(var(--colorBackground), 0.4);
+}
+
+.SelectedContainer span {
+  padding: 0.25em;
+  padding-right: 0.5em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25em;
+  font-size: var(--fontSize300);
+  position: relative;
+  background-color: hsla(var(--fontColor), 0.05);
+  clip-path: var(--shapeBase);
+}
+
+.SelectedContainer span::before {
+  content: "";
+  position: absolute;
+  background-color: hsla(var(--fontColor), 0.2);
+  inset: 0;
+  clip-path: var(--shapeBorder);
+}
+
+.SelectedContainer span button {
+  --edgeSize: 0.2em;
+
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.SelectedContainer .ClearButton {
+  height: 2.75rem;
+  top: 0;
+  right: -0.25rem;
+}
+
+.SelectedContainerShow {
+  display: inline-flex;
+}
+
+.OptionsList {
+  max-height: 30vh;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: none;
+  background-color: hsl(var(--colorBackground));
+  border: 0.0625rem solid;
+  border-color: hsla(var(--fontColor), 0.5);
+  border-radius: 0.125rem;
+  overflow: hidden auto;
+  z-index: 1000;
+}
+
+.OptionsList label {
+  display: flex;
+  align-items: center;
+  height: 3em;
+  font-size: var(--fontSize300);
+  user-select: none;
+  cursor: pointer;
+}
+
+.OptionsList label input[type="checkbox"] {
+  opacity: 0;
+}
+
+.OptionsList label:has(input[type="checkbox"]:focus-visible) {
+  color: hsl(var(--colorBackground));
+  background-color: hsl(var(--fontColor));
+}
+
+.OptionsList label:has(input[type="checkbox"]:checked:focus-visible) {
+  color: hsl(var(--colorBackground));
+  background-color: hsl(var(--fontColor));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .OptionsList label:hover {
+    color: hsl(var(--colorBackground));
+    background-color: hsl(var(--fontColor));
+  }
+
+  .OptionsList label:has(input[type="checkbox"]:checked):hover {
+    color: hsl(var(--colorBackground));
+    background-color: hsl(var(--fontColor));
+  }
+
+  .OptionsList label:has(input[type="checkbox"]:disabled):hover {
+    color: hsla(var(--fontColor), 0.5);
+    background-color: hsl(var(--colorBackground));
+  }
+}
+
+.OptionsList label:active {
+  background-color: hsla(var(--fontColor), 0.5);
+}
+
+.OptionsList label:has(input[type="checkbox"]:checked):active {
+  background-color: hsla(var(--fontColor), 0.5);
+}
+
+.OptionsList label:has(input[type="checkbox"]:checked) {
+  color: white;
+  background-color: hsl(var(--colorPrimary400A));
+}
+
+.OptionsList label:has(input[type="checkbox"]:disabled) {
+  color: hsla(var(--fontColor), 0.5);
+  cursor: unset;
+}
+
+.OptionsListFromTop {
+  top: auto;
+  bottom: 100%;
+}
+
+.OptionsListOpen {
+  display: block;
+}

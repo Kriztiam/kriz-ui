@@ -1,0 +1,111 @@
+.InputContainer {
+  margin: 0.5rem 0;
+  width: 100%;
+  position: relative;
+}
+
+.InputContainer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: hsla(var(--fontColor), 0.5);
+  clip-path: var(--shapeBorder);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .InputContainer:hover::before {
+    background-color: hsla(var(--fontColor), 0.8);
+  }
+}
+
+.InputContainer:has(select:focus-visible)::before {
+  background-color: hsl(var(--fontColor));
+}
+
+.InputContainer svg {
+  position: absolute;
+  top: 0.625em;
+  right: 0.625em;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .InputContainer:hover svg {
+    opacity: 0.8;
+  }
+}
+
+.InputContainer:has(select:focus-visible) svg {
+  opacity: 1;
+}
+
+.InputContainer label {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 2.5rem;
+  padding: 0 0.5rem;
+  color: hsla(var(--fontColor), 0.8);
+  pointer-events: none;
+  transition:
+    line-height 100ms ease-in-out,
+    font-size 100ms ease-in-out,
+    top 100ms ease-in-out,
+    left 100ms ease-in-out;
+}
+
+.InputContainer select {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0.25em 0.5em;
+  font-family: var(--fontStack);
+  background-color: hsla(var(--fontColor), 0.05);
+  color: hsl(var(--fontColor));
+  border: none;
+  clip-path: var(--shapeBase);
+  appearance: none;
+  cursor: pointer;
+}
+
+.InputContainer select:focus-visible ~ label {
+  color: hsl(var(--fontColor));
+}
+
+.InputContainer select:valid {
+  padding: 1rem 0.5rem 0.25rem;
+  padding-right: 2rem;
+}
+
+.InputContainer select:valid ~ label {
+  font-size: var(--fontSize100);
+  line-height: 1rem;
+  top: 0.125rem;
+}
+
+.InputContainer select optgroup {
+  font-size: var(--fontSize100);
+  color: hsla(var(--fontColor), 0.8);
+  background-color: hsl(var(--colorBackground));
+}
+
+.InputContainer select option {
+  font-size: initial;
+  color: hsl(var(--fontColor));
+  background-color: hsl(var(--colorBackground));
+}
+
+.InputContainer select option:checked {
+  color: white;
+  background-color: hsl(var(--colorPrimary400A));
+}
+
+.InputContainer select option:disabled {
+  color: hsl(0 0% 45%);
+}

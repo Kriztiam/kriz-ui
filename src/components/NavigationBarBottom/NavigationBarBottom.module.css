@@ -1,0 +1,148 @@
+.NavigationBarBottom {
+  --barHeight: 3rem;
+
+  height: var(--barHeight);
+  background-color: hsla(var(--fontColor), 0.05);
+  box-shadow: inset 0 0.0625rem 0 0 hsl(0 0% 0% / 0.1);
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.NavigationBarBottomLogo {
+  height: var(--barHeight);
+}
+
+.NavigationBarBottomLogo img {
+  padding: 0.25em 0;
+  min-width: calc(var(--barHeight) - 0.5em);
+  width: min-content;
+  height: 100%;
+  user-select: none;
+  filter: invert(var(--invertImagesColor));
+}
+
+.NavigationBarBottomLinksList {
+  height: var(--barHeight);
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.NavigationBarBottomLink {
+  padding: 0 1em;
+  flex-grow: 1;
+  flex-basis: 0;
+  position: relative;
+  clip-path: var(--shapeBase);
+}
+
+.NavigationBarBottomLink > * {
+  width: 100%;
+  height: var(--barHeight);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.NavigationBarBottomLink > * > span {
+  color: hsla(var(--fontColor), 0.8);
+  font-size: var(--fontSize200);
+}
+
+.NavigationBarBottomLink:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  margin: 0.5em 0;
+  width: 0.0625rem;
+  height: calc(100% - 1em);
+  background-color: hsla(var(--fontColor), 0.1);
+}
+
+.NavigationBarBottomLink:has(> *:focus-visible) {
+  background-color: hsla(var(--fontColor), 0.075);
+}
+
+.NavigationBarBottomLink:has(> *:focus-visible) svg,
+.NavigationBarBottomLink:has(> *:focus-visible) span {
+  color: hsl(var(--fontColor));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .NavigationBarBottomLink:hover {
+    background-color: hsla(var(--fontColor), 0.075);
+  }
+
+  .NavigationBarBottomLink:hover svg,
+  .NavigationBarBottomLink:hover span {
+    color: hsl(var(--fontColor));
+  }
+}
+
+.NavigationBarBottomLink:active {
+  background-color: hsla(var(--fontColor), 0.05);
+}
+
+.NavigationBarBottomLink:active svg,
+.NavigationBarBottomLink:active span {
+  color: hsla(var(--fontColor), 0.5);
+}
+
+.NavigationBarBottomMenuButton {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.NavigationBarBottomLinkTextHidden svg {
+  font-size: 1.5em;
+}
+
+.NavigationBarBottomLinkTextHidden span {
+  display: none;
+}
+
+.NavigationBarBottomLinkActive {
+  background-color: hsla(var(--fontColor), 0.8);
+}
+
+.NavigationBarBottomLinkActive img {
+  filter: invert(calc(1 - var(--invertImagesColor)));
+}
+
+.NavigationBarBottomLinkActive:has(> *:focus-visible) img {
+  filter: invert(calc(1 - var(--invertImagesColor)));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .NavigationBarBottomLinkActive:hover img {
+    filter: invert(calc(1 - var(--invertImagesColor)));
+  }
+}
+
+.NavigationBarBottomLinkActive:active img {
+  filter: invert(calc(1 - var(--invertImagesColor)));
+}
+
+.NavigationBarBottomLinkActive svg,
+.NavigationBarBottomLinkActive span {
+  color: hsl(var(--colorBackground));
+}
+
+.NavigationBarLinkOverflow {
+  display: none;
+}
+
+.NavigationBarBottomDrawerLinkActive {
+  display: flex;
+  align-items: center;
+  color: hsla(var(--fontColorA), 0.8) !important;
+}
+
+.NavigationBarBottomDrawerLinkActive > svg {
+  margin-right: 0.25em;
+}

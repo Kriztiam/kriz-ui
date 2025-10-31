@@ -1,0 +1,17 @@
+@keyframes skeleton {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.Skeleton {
+  animation: skeleton 2000ms ease-in-out 100ms infinite;
+}

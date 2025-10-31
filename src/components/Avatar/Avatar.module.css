@@ -1,0 +1,20 @@
+.Avatar {
+  --size: 2em;
+
+  font-size: calc(var(--size) * 0.5);
+  width: var(--size);
+  aspect-ratio: 1/1;
+  background-color: hsl(var(--colorBackground));
+  clip-path: var(--shapeBase);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  line-height: 1;
+  vertical-align: top;
+}
+
+.Avatar svg {
+  font-size: calc(var(--size) * 0.5);
+}

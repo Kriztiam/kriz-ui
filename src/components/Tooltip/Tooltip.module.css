@@ -1,0 +1,37 @@
+.TooltipContainer {
+  display: inline-block;
+  position: relative;
+  width: fit-content;
+}
+
+.Tooltip {
+  width: 10em;
+  padding: 0.25rem 0.5rem;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: hsl(var(--colorBackground));
+  color: hsl(var(--fontColor));
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 0.25em;
+  overflow-wrap: break-word;
+  z-index: 1000;
+}
+
+.TooltipActive {
+  display: block;
+}
+
+.TooltipFromTop {
+  top: auto;
+  bottom: 100%;
+}
+
+.TooltipFromRight {
+  left: auto;
+  right: 0;
+}

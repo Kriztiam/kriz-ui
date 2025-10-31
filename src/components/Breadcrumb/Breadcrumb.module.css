@@ -1,0 +1,84 @@
+.Breadcrumb {
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.25em;
+  position: relative;
+}
+
+.Breadcrumb::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: hsla(var(--fontColor), 0.05);
+  clip-path: var(--shapeBase);
+}
+
+.Breadcrumb::after {
+  content: "";
+  position: absolute;
+  background-color: hsla(var(--fontColor), 0.2);
+  inset: 0;
+  clip-path: var(--shapeBorder);
+  pointer-events: none;
+}
+
+.Breadcrumb > ol {
+  display: flex;
+  align-items: center;
+}
+
+.Breadcrumb > ol > li {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Breadcrumb > ol > li:first-child > a > svg {
+  margin-right: 0.25em;
+}
+
+.Breadcrumb > ol > li > a {
+  min-height: 2.25em;
+  padding: 0.25em 0.5em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: inherit;
+  text-decoration: none;
+  font-size: var(--fontSize400);
+  line-height: 1;
+  clip-path: var(--shapeBase);
+}
+
+.Breadcrumb > ol > li > a:focus-visible {
+  background-color: hsla(var(--fontColor), 0.075);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .Breadcrumb > ol > li > a:hover {
+    background-color: hsla(var(--fontColor), 0.075);
+  }
+}
+
+.Breadcrumb > ol > li > a:active {
+  background-color: hsla(var(--fontColor), 0.05);
+}
+
+.Breadcrumb > ol > li + li::before {
+  content: "";
+  margin-left: -0.125em;
+  margin-right: 0.375em;
+  min-width: 0.75rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  outline: 0.125em solid hsla(var(--fontColor), 0.4);
+  outline-offset: -0.125em;
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+  transform: rotate(45deg);
+}
+
+.CurrentPath {
+  color: hsl(var(--colorBackground)) !important;
+  background-color: hsla(var(--fontColorA), 0.8);
+}

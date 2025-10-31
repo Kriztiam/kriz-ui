@@ -1,0 +1,77 @@
+@keyframes pulse-saturation {
+  0% {
+    filter: saturate(0.5);
+  }
+
+  50% {
+    filter: saturate(1);
+  }
+
+  100% {
+    filter: saturate(0.5);
+  }
+}
+
+@keyframes background-scroll {
+  0% {
+    background-position: calc(2rem / sin(45deg)) 0;
+  }
+}
+
+.NotificationCard {
+  --notificationColor: 0, 0%, 30%;
+
+  width: fit-content;
+  background-color: hsl(var(--notificationColor), 0.2);
+  border: 0.5rem solid hsl(var(--notificationColor), 0.8);
+  backdrop-filter: blur(2px);
+}
+
+.NotificationCardFullscreen {
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+.NotificationCardHeader {
+  background-color: hsl(var(--notificationColor), 0.8);
+}
+
+.NotificationCardHeader h1 {
+  padding: 0.25em 0.5em;
+  color: hsl(var(--colorBackground));
+  font-family: monospace;
+  font-size: var(--fontSize800);
+  font-weight: 600;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+}
+
+.NotificationCardHeaderIcon {
+  padding: 0.125em 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: hsl(var(--notificationColor));
+  font-size: var(--fontSize700);
+  font-family: monospace;
+  text-transform: uppercase;
+  background-image: repeating-linear-gradient(
+    45deg,
+    hsl(var(--colorBackground), 0.8) 0 0.5rem,
+    hsl(var(--colorBackground), 0.9) 0.5rem 1rem
+  );
+  background-size: calc(2rem / sin(45deg)) 100%;
+  animation:
+    background-scroll 5s linear infinite reverse,
+    pulse-saturation 1s infinite;
+}
+
+.NotificationCardHeaderIcon svg {
+  margin-right: 0.125em;
+}
+
+.NotificationCardChildren {
+  margin: 1rem;
+}

@@ -1,0 +1,44 @@
+.Card {
+  --edgeSize: 0.6em;
+
+  padding: 1em;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: hsla(var(--fontColor), 0.05);
+  clip-path: polygon(
+    0 var(--edgeSize),
+    var(--edgeSize) 0,
+    100% 0,
+    100% calc(100% - var(--edgeSize)),
+    calc(100% - var(--edgeSize)) 100%,
+    0 100%
+  );
+  backdrop-filter: blur(2px);
+}
+
+.Card::before {
+  --borderWidth: 0.1em;
+  --separation: calc(var(--edgeSize) + var(--borderWidth) * 0.414214);
+
+  content: "";
+  position: absolute;
+  background-color: hsla(var(--fontColor), 0.1);
+  inset: 0;
+  clip-path: polygon(
+    0 var(--edgeSize),
+    var(--edgeSize) 0,
+    100% 0,
+    100% calc(100% - var(--edgeSize)),
+    calc(100% - var(--edgeSize)) 100%,
+    0 100%,
+    0 var(--edgeSize),
+    var(--borderWidth) var(--separation),
+    var(--borderWidth) calc(100% - var(--borderWidth)),
+    calc(100% - var(--separation)) calc(100% - var(--borderWidth)),
+    calc(100% - var(--borderWidth)) calc(100% - var(--separation)),
+    calc(100% - var(--borderWidth)) var(--borderWidth),
+    var(--separation) var(--borderWidth),
+    var(--borderWidth) var(--separation)
+  );
+}

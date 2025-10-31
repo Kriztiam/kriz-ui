@@ -1,0 +1,64 @@
+.ImageViewerContainer {
+  width: fit-content;
+}
+
+.ImageViewerContainer dialog:last-child div {
+  padding: 0;
+}
+
+.ImageViewerContainer dialog:last-child div img {
+  object-fit: contain;
+  max-width: calc(100vw - 2vmax);
+  max-height: calc(100vh - 2vmax);
+  width: 100%;
+}
+
+.ImageViewerButton {
+  --size: 15rem;
+
+  border: none;
+  background-color: transparent;
+  position: relative;
+  max-width: var(--size);
+  color: hsl(var(--fontColor));
+  cursor: pointer;
+}
+
+.ImageViewerOverlay {
+  width: calc(var(--fontSize100) * 2);
+  height: calc(var(--fontSize100) * 2);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--colorPrimary100A));
+  background-color: black;
+  clip-path: polygon(
+    0 var(--edgeSize),
+    var(--edgeSize) 0,
+    100% 0,
+    100% 100%,
+    0 100%
+  );
+  opacity: 0.8;
+}
+
+.ImageViewerOverlay > svg {
+  font-size: var(--fontSize100);
+}
+
+.ImageViewerButton:focus-visible .ImageViewerOverlay {
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ImageViewerButton:hover .ImageViewerOverlay {
+    opacity: 1;
+  }
+}
+
+.ImageViewerButton:active .ImageViewerOverlay {
+  opacity: 0.4;
+}

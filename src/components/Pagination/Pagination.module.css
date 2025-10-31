@@ -1,0 +1,44 @@
+.Pagination {
+  --size: 1rem;
+
+  width: fit-content;
+  max-width: 100%;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: hsla(var(--fontColor), 0.05);
+  clip-path: var(--shapeBase);
+}
+
+.Pagination::before {
+  content: "";
+  position: absolute;
+  background-color: hsla(var(--fontColor), 0.2);
+  inset: 0;
+  clip-path: var(--shapeBorder);
+}
+
+.Pagination li {
+  list-style: none;
+  font-size: var(--size);
+}
+
+.Pagination li button {
+  --edgeSize: 0.25em;
+
+  margin: 0.25em;
+  padding: 0;
+  min-width: 2em;
+  min-height: 2em;
+  font-family: monospace;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.Pagination li button::before {
+  display: none;
+}
+
+.Pagination li button:has(svg)::before {
+  display: block;
+}

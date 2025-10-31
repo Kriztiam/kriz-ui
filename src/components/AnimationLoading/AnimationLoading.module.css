@@ -1,0 +1,96 @@
+@keyframes line-horizontal {
+  0% {
+    width: 0;
+  }
+
+  50% {
+    width: 100%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes line-vertical {
+  0% {
+    height: 0;
+  }
+
+  50% {
+    height: 0;
+  }
+
+  100% {
+    height: 100%;
+  }
+}
+
+.Loading {
+  --color: hsl(var(--fontColor));
+  --sideSize: calc(var(--size, 1em) * 0.75);
+  --borderWidth: calc(var(--sideSize) * 0.125);
+
+  display: inline-block;
+  position: relative;
+  height: var(--sideSize);
+  width: var(--sideSize);
+  margin: calc(var(--size, 1em) * 0.25);
+  outline: var(--borderWidth) solid hsl(from var(--color) h s l / 0.1);
+  outline-offset: calc(var(--borderWidth) * -1);
+  transform: rotate(45deg);
+}
+
+.Loading span {
+  position: absolute;
+  display: inline-block;
+  background-color: hsl(from var(--color) h s l);
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+
+.Loading span:nth-child(1) {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--borderWidth) * 0.5);
+  animation-name: line-horizontal;
+}
+
+.Loading span:nth-child(2) {
+  top: 0;
+  right: 0;
+  width: calc(var(--borderWidth) * 0.5);
+  height: 100%;
+  animation-name: line-vertical;
+}
+
+.Loading span:nth-child(3) {
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: calc(var(--borderWidth) * 0.5);
+  animation-name: line-horizontal;
+}
+
+.Loading span:nth-child(4) {
+  bottom: 0;
+  left: 0;
+  width: calc(var(--borderWidth) * 0.5);
+  height: 100%;
+  animation-name: line-vertical;
+}
+
+.LoadingFullScreen {
+  --size: 10vmax;
+
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

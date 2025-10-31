@@ -1,0 +1,71 @@
+.ModalContainer {
+  border: none;
+  background-color: transparent;
+  color: hsl(var(--fontColor));
+  padding: 1vmax calc(2vmax + 2.25rem);
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+.ModalContainer[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ModalContainer::backdrop {
+  background-color: hsla(var(--colorBackground), 0.95);
+  backdrop-filter: blur(4px);
+}
+
+.ModalContainer > button:first-child {
+  --color: hsl(var(--fontColor));
+
+  margin: 1vmax;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-image: linear-gradient(
+    200deg,
+    hsl(var(--colorError), 0.4),
+    transparent
+  );
+}
+
+.ModalContainer > button:first-child::before {
+  --color: hsl(var(--colorError));
+
+  clip-path: polygon(
+    0 var(--edgeSize),
+    var(--edgeSize) 0,
+    100% 0,
+    100% calc(100% - var(--edgeSize)),
+    calc(100% - var(--edgeSize)) 100%,
+    calc(100% - var(--separation)) calc(100% - var(--borderWidth)),
+    calc(100% - var(--borderWidth)) calc(100% - var(--separation)),
+    calc(100% - var(--borderWidth)) var(--borderWidth),
+    var(--separation) var(--borderWidth),
+    var(--borderWidth) var(--separation)
+  );
+}
+
+.Modal {
+  padding: 1rem;
+  max-width: calc(100vw - 4vmax - 4.5rem);
+  max-height: calc(100vh - 2vmax);
+  background-color: hsl(var(--colorBackground));
+  overflow: hidden;
+}
+
+@media (orientation: portrait) {
+  .ModalContainer {
+    padding: calc(2vmax + 2.25rem) 1vmax 1vmax;
+  }
+
+  .Modal {
+    max-width: calc(100vw - 2vmax);
+    max-height: calc(100vh - 2vmax - 2.25rem);
+  }
+}

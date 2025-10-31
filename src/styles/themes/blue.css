@@ -1,0 +1,18 @@
+:root {
+  /* Colors in "H, S, L" format */
+  --colorPrimary050: 204, 51.9%, 89.4%;
+  --colorPrimary100: 203, 43.9%, 79%;
+  --colorPrimary200: 203, 35.8%, 68.8%;
+  --colorPrimary300: 202, 29.5%, 58.8%;
+  --colorPrimary400: 202, 25.1%, 49.2%;
+  --colorPrimary500: 202, 30.4%, 40%;
+  --colorPrimary600: 202, 38%, 31%;
+  --colorPrimary700: 202, 50.9%, 22.4%;
+  --colorPrimary800: 201, 72.2%, 14.1%;
+  --colorPrimary900: 202, 94.7%, 7.5%;
+  --colorPrimary950: 212, 100%, 2.5%;
+  --colorPrimary100A: 194, 100%, 77.6%;
+  --colorPrimary200A: 197, 100%, 46.9%;
+  --colorPrimary300A: 202, 100%, 35.3%;
+  --colorPrimary400A: 211, 100%, 23.5%;
+}
