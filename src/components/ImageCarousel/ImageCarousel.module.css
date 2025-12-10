@@ -1,7 +1,14 @@
+.ImageCarousel {
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
 .CarouselImageContainer {
   padding: 0.25rem;
   width: 100%;
-  height: var(--height);
+  height: calc(100% - 3.25rem);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,14 +16,12 @@
 }
 
 .CarouselImage {
-  width: auto;
   height: 100%;
 }
 
 .CarouselImage > button {
-  max-width: none;
   height: 100%;
-  width: 100%;
+  max-width: none;
 }
 
 .CarouselImage > button > img {

@@ -12,13 +12,11 @@ export default function ImageCarousel({
   altArray,
   thumbnailSrc,
   useNextImage,
-  height,
 }: {
   srcArray: string[];
   altArray?: string[];
   thumbnailSrc?: string[];
   useNextImage?: boolean;
-  height?: string;
 }) {
   const [img, setImg] = useState(0);
   const changeImgButtonsRef = useRef<HTMLDivElement>(null);
@@ -81,7 +79,7 @@ export default function ImageCarousel({
   }, [prevImg, nextImg]);
 
   return (
-    <div style={{ "--height": height } as React.CSSProperties}>
+    <div className={styles.ImageCarousel}>
       <div className={styles.CarouselImageContainer}>
         {srcArray.map((imageSrc, i) => (
           <ImageViewer

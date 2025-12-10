@@ -3,35 +3,19 @@
 import styles from "./InputSelectMultiple.module.css";
 import { useEffect, useReducer, useRef, useState } from "react";
 import Button from "@/components/Button/Button";
+import sortByInitialLetter from "@/utils/sortByInitialLetter";
 import Delete from "@/assets/img/icons/Delete.svg";
 import Down from "@/assets/img/icons/Down.svg";
 
-function getInitialLetter(str: string) {
-  if (isNaN(Number(str.charAt(0))) && !/[a-zA-Z]/.test(str.charAt(0))) {
-    return "*";
-  } else if (isNaN(Number(str.charAt(0)))) {
-    return str.charAt(0);
-  } else {
-    return "0-9";
-  }
-}
+type Option = { value: string; label: string };
 
-function sortByInitialLetter(a: string, b: string) {
-  const initialLetterA = getInitialLetter(a);
-  const initialLetterB = getInitialLetter(b);
-  if (initialLetterA === "*") return -1;
-  if (initialLetterB === "*") return 1;
-  if (initialLetterA === "0-9") return -1;
-  if (initialLetterB === "0-9") return 1;
-  return initialLetterA.localeCompare(initialLetterB);
-}
-
-const reducer = (state: string[], action: string) => {
+const reducer = (state: Option[], action: "" | Option) => {
   if (action === "") {
     return [];
   }
-  if (state.includes(action)) {
-    return [...state.filter((element: string) => element !== action)];
+  const exists = state.some((el) => el.value === action.value);
+  if (exists) {
+    return state.filter((el) => el.value !== action.value);
   }
   return [...state, action];
 };
@@ -43,20 +27,32 @@ export default function InputSelectMultiple({
   disabledElements,
   disabledText = "Not available",
   onChange,
+  sortOptions,
 }: {
   labelText?: string;
-  options: string[];
+  options: string[] | Option[];
   defaultSelected?: string[];
   disabledElements?: string[];
   disabledText?: string;
-  onChange?: React.Dispatch<React.SetStateAction<string[]>>;
+  onChange?: React.Dispatch<React.SetStateAction<Option[]>>;
+  sortOptions?: boolean;
 }) {
-  const sortedOptions = options.sort(sortByInitialLetter);
+  const normalizedOptions: Option[] = options.map((opt) =>
+    typeof opt === "string" ? { value: opt, label: opt } : opt
+  );
+
+  const sortedOptions = sortOptions
+    ? [...normalizedOptions].sort(sortByInitialLetter)
+    : normalizedOptions;
 
   const inputText = useRef<HTMLInputElement>(null);
   const optionsList = useRef<HTMLDivElement>(null);
 
-  const [state, dispatch] = useReducer(reducer, defaultSelected || []);
+  const [state, dispatch] = useReducer(
+    reducer,
+    defaultSelected || [],
+    (initial) => normalizedOptions.filter((opt) => initial.includes(opt.value))
+  );
   const [searchInput, setSearchInput] = useState("");
   const [showOptions, setShowOptions] = useState(false);
   const [menuOriginTop, setMenuOriginTop] = useState(false);
@@ -83,13 +79,18 @@ export default function InputSelectMultiple({
     }
   }, [onChange, state]);
 
-  function handleInputClick(event: React.MouseEvent) {
+  function handlePointerDown(event: React.PointerEvent) {
+    event.preventDefault();
+
     if (event.clientY > window.innerHeight * 0.5) {
       setMenuOriginTop(true);
     } else {
       setMenuOriginTop(false);
     }
-    setShowOptions(true);
+    setShowOptions((prev) => !prev);
+    requestAnimationFrame(() => {
+      inputText.current?.focus();
+    });
   }
 
   function handleInputFocus(event: React.FocusEvent) {
@@ -119,12 +120,13 @@ export default function InputSelectMultiple({
           placeholder="."
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
-          onClick={handleInputClick}
+          onPointerDown={handlePointerDown}
           onFocus={handleInputFocus}
         />
         <label>{labelText}</label>
         {searchInput ? (
           <button
+            type="button"
             className={styles.ClearButton}
             onClick={() => setSearchInput("")}
           >
@@ -144,14 +146,18 @@ export default function InputSelectMultiple({
             .filter(Boolean)
             .join(" ")}
         >
-          {state.map((element) => (
-            <span key={"selected-" + element}>
-              <Button onClick={() => dispatch(element)}>✖</Button>
-              {element}
+          {state.map((option) => (
+            <span key={"selected-" + option.label}>
+              <Button onClick={() => dispatch(option)}>✖</Button>
+              {option.label}
             </span>
           ))}
 
-          <button className={styles.ClearButton} onClick={() => dispatch("")}>
+          <button
+            type="button"
+            className={styles.ClearButton}
+            onClick={() => dispatch("")}
+          >
             <Delete />
           </button>
         </div>
@@ -167,23 +173,28 @@ export default function InputSelectMultiple({
           .filter(Boolean)
           .join(" ")}
       >
-        {sortedOptions.map((element) => (
+        {sortedOptions.map((option) => (
           <label
-            key={"option-" + element}
+            key={"option-" + option.value}
             style={{
-              display: element.toUpperCase().includes(searchInput.toUpperCase())
+              display: option.label
+                .toUpperCase()
+                .includes(searchInput.toUpperCase())
                 ? "flex"
                 : "none",
             }}
           >
             <input
               type="checkbox"
-              checked={state.includes(element)}
-              onChange={() => dispatch(element)}
-              disabled={disabledElements?.includes(element)}
+              value={option.value}
+              checked={state.some((el) => el.value === option.value)}
+              onChange={() => dispatch(option)}
+              disabled={disabledElements?.includes(option.value)}
             />
-            {element}
-            {disabledElements?.includes(element) ? " - " + disabledText : ""}
+            {option.label}
+            {disabledElements?.includes(option.value)
+              ? " - " + disabledText
+              : ""}
           </label>
         ))}
       </div>

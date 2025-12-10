@@ -176,3 +176,11 @@
   height: 2rem;
   background-color: hsla(var(--fontColor), 0.1);
 }
+
+.InputContainer:has(button) input {
+  padding-right: 2.5rem !important;
+}
+
+.InputContainer:has(span > button) input {
+  padding-right: 5rem !important;
+}

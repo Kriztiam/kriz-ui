@@ -22,7 +22,6 @@
   --notificationColor: 0, 0%, 30%;
 
   width: fit-content;
-  background-color: hsl(var(--notificationColor), 0.2);
   border: 0.5rem solid hsl(var(--notificationColor), 0.8);
   backdrop-filter: blur(2px);
 }
@@ -73,5 +72,20 @@
 }
 
 .NotificationCardChildren {
-  margin: 1rem;
+  padding: 1rem;
+  height: calc(100% - 6rem);
+  position: relative;
+}
+
+.NotificationCardChildren::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: hsl(var(--notificationColor), 0.1);
+  mix-blend-mode: hard-light;
+}
+
+.NotificationCardChildren button,
+.NotificationCardChildren a {
+  --color: hsl(var(--fontColor));
 }

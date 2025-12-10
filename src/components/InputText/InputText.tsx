@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./InputText.module.css";
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import Calendar from "@/assets/img/icons/Calendar.svg";
 import Clock from "@/assets/img/icons/Clock.svg";
 import Delete from "@/assets/img/icons/Delete.svg";
@@ -15,11 +15,8 @@ import Search from "@/assets/img/icons/Search.svg";
 
 export default function InputText({
   type = "text",
-  id,
   labelText,
-  defaultValue,
-  onChange,
-  autoFocus,
+  ...props
 }: {
   type?:
     | "text"
@@ -32,12 +29,8 @@ export default function InputText({
     | "month"
     | "time"
     | "week";
-  id?: string;
   labelText?: string;
-  defaultValue?: string;
-  onChange?: React.Dispatch<React.SetStateAction<string>>;
-  autoFocus?: boolean;
-}) {
+} & React.InputHTMLAttributes<HTMLInputElement>) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [showPassword, setShowPassword] = useState(false);
   const withIcon = type === "search" || type === "email" || type === "password";
@@ -47,6 +40,7 @@ export default function InputText({
     type === "month" ||
     type === "time" ||
     type === "week";
+  const uniqueId = useId();
   return (
     <div
       className={[styles.InputContainer, withIcon && styles.InputWithIcon]
@@ -63,22 +57,20 @@ export default function InputText({
 
       <input
         ref={inputRef}
+        id={props.id ? props.id : uniqueId}
         type={type === "password" && showPassword ? "text" : type}
-        id={id}
-        name={id}
-        defaultValue={defaultValue}
         placeholder={
           ["text", "search", "email", "password", "number"].includes(type)
             ? "."
             : undefined
         }
-        autoFocus={autoFocus}
-        onChange={onChange ? (e) => onChange(e.target.value) : undefined}
+        {...props}
       />
-      <label htmlFor={id}>{labelText || id}</label>
+      <label htmlFor={props.id ? props.id : uniqueId}>{labelText}</label>
 
       {type === "search" && (
         <button
+          type="button"
           className={`${styles.InputButton} ${styles.InputButtonRight} ${styles.InputButtonSearch}`}
           onClick={() => {
             const input = inputRef.current;
@@ -93,6 +85,7 @@ export default function InputText({
       )}
       {type === "password" && (
         <button
+          type="button"
           className={`${styles.InputButton} ${styles.InputButtonRight}`}
           onClick={() => setShowPassword((prev) => !prev)}
         >
@@ -104,6 +97,7 @@ export default function InputText({
           className={`${styles.InputButtonRight} ${styles.InputButtonNumber}`}
         >
           <button
+            type="button"
             className={styles.InputButton}
             onClick={() => inputRef.current?.stepDown()}
             title="Decrease value"
@@ -113,6 +107,7 @@ export default function InputText({
           </button>
           <span />
           <button
+            type="button"
             className={styles.InputButton}
             onClick={() => inputRef.current?.stepUp()}
             title="Increase value"
@@ -124,6 +119,7 @@ export default function InputText({
       )}
       {showCalendarPicker && (
         <button
+          type="button"
           className={`${styles.InputButton} ${styles.InputButtonRight}`}
           onClick={() => {
             const input = inputRef.current;

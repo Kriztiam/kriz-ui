@@ -12,6 +12,34 @@
   }
 }
 
+@keyframes shimmer {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
+}
+
 .Skeleton {
+  position: relative;
+  overflow: hidden;
   animation: skeleton 2000ms ease-in-out 100ms infinite;
+}
+
+.Skeleton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -200%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0,
+    hsla(var(--fontColor), 0.2) 50%,
+    transparent 100%
+  );
+  animation: shimmer 2000ms infinite;
 }

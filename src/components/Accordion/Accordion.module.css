@@ -89,5 +89,6 @@
 }
 
 .AccordionSection {
+  box-sizing: border-box;
   padding: 0.5rem;
 }

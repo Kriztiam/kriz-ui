@@ -6,6 +6,7 @@ import { useId, useState } from "react";
 export default function InputRangeDual({
   labelText,
   id,
+  name,
   min = 0,
   max = 100,
   step,
@@ -16,6 +17,7 @@ export default function InputRangeDual({
 }: {
   labelText: string;
   id?: string;
+  name?: string;
   min?: number;
   max?: number;
   step?: number;
@@ -54,6 +56,7 @@ export default function InputRangeDual({
       <div className={styles.RangeDual}>
         <input
           id={id ? id + "Min" : uniqueId + "Min"}
+          name={name + "Min"}
           className={styles.RangeInput}
           type="range"
           min={min}
@@ -67,6 +70,7 @@ export default function InputRangeDual({
         />
         <input
           id={id ? id + "Max" : uniqueId + "Max"}
+          name={name + "Max"}
           className={styles.RangeInput}
           type="range"
           min={min}
@@ -80,8 +84,8 @@ export default function InputRangeDual({
         />
       </div>
       <div className={styles.RangeMinMax}>
-        <span>{min}</span>
-        <span>{max}</span>
+        <span>{`${valuePrefix}${min}${valueSuffix}`}</span>
+        <span>{`${valuePrefix}${max}${valueSuffix}`}</span>
       </div>
     </div>
   );

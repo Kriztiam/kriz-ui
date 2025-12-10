@@ -27,7 +27,7 @@
 .InputContainer svg {
   position: absolute;
   top: 0.625em;
-  right: 0.625em;
+  right: 0.75em;
   opacity: 0.5;
   pointer-events: none;
 }

@@ -146,7 +146,7 @@
   flex-wrap: wrap;
   gap: 0.5em;
   border-top: 0.0625rem solid hsla(var(--fontColor), 0.4);
-  background-color: hsla(var(--colorBackground), 0.4);
+  background-color: hsla(var(--fontColor), 0.05);
 }
 
 .SelectedContainer span {
@@ -155,7 +155,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.25em;
+  gap: 0.5em;
   font-size: var(--fontSize300);
   position: relative;
   background-color: hsla(var(--fontColor), 0.05);
@@ -218,24 +218,20 @@
 }
 
 .OptionsList label:has(input[type="checkbox"]:focus-visible) {
-  color: hsl(var(--colorBackground));
-  background-color: hsl(var(--fontColor));
+  background-color: hsl(var(--fontColor), 0.2);
 }
 
 .OptionsList label:has(input[type="checkbox"]:checked:focus-visible) {
-  color: hsl(var(--colorBackground));
-  background-color: hsl(var(--fontColor));
+  background-color: hsl(var(--colorPrimary400A), 0.8);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .OptionsList label:hover {
-    color: hsl(var(--colorBackground));
-    background-color: hsl(var(--fontColor));
+    background-color: hsl(var(--fontColor), 0.2);
   }
 
   .OptionsList label:has(input[type="checkbox"]:checked):hover {
-    color: hsl(var(--colorBackground));
-    background-color: hsl(var(--fontColor));
+    background-color: hsl(var(--colorPrimary400A), 0.8);
   }
 
   .OptionsList label:has(input[type="checkbox"]:disabled):hover {
@@ -245,11 +241,11 @@
 }
 
 .OptionsList label:active {
-  background-color: hsla(var(--fontColor), 0.5);
+  background-color: hsla(var(--fontColor), 0.1);
 }
 
 .OptionsList label:has(input[type="checkbox"]:checked):active {
-  background-color: hsla(var(--fontColor), 0.5);
+  background-color: hsla(var(--colorPrimary400A), 0.4);
 }
 
 .OptionsList label:has(input[type="checkbox"]:checked) {

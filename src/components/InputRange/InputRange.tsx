@@ -44,8 +44,8 @@ export default function InputRange({
         {...props}
       />
       <div className={styles.RangeMinMax}>
-        <span>{min}</span>
-        <span>{max}</span>
+        <span>{`${valuePrefix}${min}${valueSuffix}`}</span>
+        <span>{`${valuePrefix}${max}${valueSuffix}`}</span>
       </div>
     </div>
   );

@@ -10,11 +10,12 @@ export default function Modal({
   isOpen,
   setIsOpen,
   children,
+  ...props
 }: {
   isOpen?: boolean;
   setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   children?: React.ReactNode;
-}) {
+} & React.HTMLAttributes<HTMLDivElement>) {
   const modal = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -49,7 +50,12 @@ export default function Modal({
       >
         <X />
       </Button>
-      <Card className={styles.Modal}>{children}</Card>
+      <Card
+        className={[styles.Modal, props.className].filter(Boolean).join(" ")}
+        {...props}
+      >
+        {children}
+      </Card>
     </dialog>
   );
 }

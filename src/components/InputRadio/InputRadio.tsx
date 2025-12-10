@@ -1,22 +1,15 @@
 import styles from "./InputRadio.module.css";
 
 export default function InputRadio({
-  id,
   labelText,
-  groupName,
-  checked,
-  disabled,
   inline,
   size,
+  ...props
 }: {
-  id?: string;
   labelText?: string;
-  groupName?: string;
-  checked?: boolean;
-  disabled?: boolean;
   inline?: boolean;
   size?: string;
-}) {
+} & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <label
       className={[styles.InputRadio, inline && styles.InputRadioInline]
@@ -24,14 +17,7 @@ export default function InputRadio({
         .join(" ")}
       style={{ "--size": size } as React.CSSProperties}
     >
-      <input
-        type="radio"
-        id={id}
-        name={groupName}
-        value={labelText}
-        checked={checked}
-        disabled={disabled}
-      />
+      <input type="radio" {...props} />
       {labelText}
     </label>
   );
