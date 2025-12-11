@@ -2,7 +2,6 @@
   border: none;
   background-color: transparent;
   color: hsl(var(--fontColor));
-  padding: 1vmax calc(2vmax + 2.25rem);
   width: 100%;
   height: 100%;
   max-width: 100vw;
@@ -20,52 +19,174 @@
   backdrop-filter: blur(4px);
 }
 
-.ModalContainer > button:first-child {
-  --color: hsl(var(--fontColor));
+.Modal {
+  --edgeSize: 0.6em;
 
-  margin: 1vmax;
-  position: fixed;
-  top: 0;
-  right: 0;
+  padding: 1rem;
+  padding-top: 2.25rem;
+  max-width: 100vw;
+  max-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: hsl(var(--colorBackgroundA));
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--edgeSize)) 0,
+    100% var(--edgeSize),
+    100% calc(100% - var(--edgeSize)),
+    calc(100% - var(--edgeSize)) 100%,
+    var(--edgeSize) 100%,
+    0 calc(100% - var(--edgeSize))
+  );
   background-image: linear-gradient(
-    225deg,
-    hsl(var(--colorError), 0.4) 60%,
+    90deg,
+    hsl(var(--fontColor), 0.05),
+    transparent 25%,
+    transparent 75%,
+    hsl(var(--fontColor), 0.05)
+  );
+  overflow: hidden;
+}
+
+.Modal::before {
+  --borderWidth: 0.1em;
+  --separation: calc(var(--edgeSize) + var(--borderWidth) * 0.414214);
+
+  content: "";
+  position: absolute;
+  background-color: hsla(var(--fontColor), 0.2);
+  inset: 0;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--edgeSize)) 0,
+    100% var(--edgeSize),
+    100% calc(100% - var(--edgeSize)),
+    calc(100% - var(--edgeSize)) 100%,
+    var(--edgeSize) 100%,
+    0 calc(100% - var(--edgeSize)),
+    0 0,
+    var(--borderWidth) var(--borderWidth),
+    var(--borderWidth) calc(100% - var(--separation)),
+    var(--separation) calc(100% - var(--borderWidth)),
+    calc(100% - var(--separation)) calc(100% - var(--borderWidth)),
+    calc(100% - var(--borderWidth)) calc(100% - var(--separation)),
+    calc(100% - var(--borderWidth)) var(--separation),
+    calc(100% - var(--separation)) var(--borderWidth),
+    var(--borderWidth) var(--borderWidth)
+  );
+}
+
+.ModalTitle {
+  width: 100%;
+  height: 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(
+    90deg,
+    hsl(var(--fontColor), 0.05) 30%,
     transparent
   );
 }
 
-.ModalContainer > button:first-child::before {
-  --color: hsl(var(--colorError));
+.ModalTitle > span {
+  padding-left: 0.125rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: var(--fontSize100);
+  text-transform: uppercase;
+}
 
+.ModalTitle > span > svg {
+  margin-left: 0.125rem;
+  margin-right: 0.0625rem;
+  opacity: 0.5;
+}
+
+.ModalButtonClose {
+  --edgeSize: 0.6rem;
+
+  padding: 0 1rem;
+  min-width: 2.25em;
+  min-height: 2.25em;
+  height: 100%;
+  aspect-ratio: 3;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: var(--fontSize100);
+  color: hsl(var(--fontColor), 0.8);
+  background-color: hsl(var(--colorError), 0.4);
   clip-path: polygon(
-    0 var(--edgeSize),
-    var(--edgeSize) 0,
-    100% 0,
-    100% calc(100% - var(--edgeSize)),
-    calc(100% - var(--edgeSize)) 100%,
-    calc(100% - var(--separation)) calc(100% - var(--borderWidth)),
-    calc(100% - var(--borderWidth)) calc(100% - var(--separation)),
-    calc(100% - var(--borderWidth)) var(--borderWidth),
-    var(--separation) var(--borderWidth),
-    var(--borderWidth) var(--separation)
+    0 0,
+    calc(100% - var(--edgeSize)) 0,
+    100% var(--edgeSize),
+    100% 100%,
+    0 100%
+  );
+  isolation: isolate;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  vertical-align: top;
+  border: none;
+}
+
+.ModalButtonClose::before {
+  --borderWidth: 0.1rem;
+  --separation: calc(var(--edgeSize) + var(--borderWidth) * 0.414214);
+
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: hsl(var(--colorError), 0.8);
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--edgeSize)) 0,
+    100% var(--edgeSize),
+    100% 100%,
+    0 100%,
+    0 0,
+    var(--borderWidth) var(--borderWidth),
+    var(--borderWidth) calc(100% - var(--borderWidth)),
+    calc(100% - var(--borderWidth)) calc(100% - var(--borderWidth)),
+    calc(100% - var(--borderWidth)) var(--separation),
+    calc(100% - var(--separation)) var(--borderWidth),
+    var(--borderWidth) var(--borderWidth)
   );
 }
 
-.Modal {
-  padding: 1rem;
-  max-width: calc(100vw - 4vmax - 4.5rem);
-  max-height: calc(100vh - 2vmax);
-  background-color: hsl(var(--colorBackground));
-  overflow: hidden;
+.ModalButtonClose:focus-visible {
+  color: hsl(var(--fontColor));
+  background-color: hsl(var(--colorError), 0.6);
 }
 
-@media (orientation: portrait) {
-  .ModalContainer {
-    padding: calc(2vmax + 2.25rem) 1vmax 1vmax;
+.ModalButtonClose:focus-visible::before {
+  background-color: hsl(var(--colorError));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ModalButtonClose:hover {
+    color: hsl(var(--fontColor));
+    background-color: hsl(var(--colorError), 0.6);
   }
 
-  .Modal {
-    max-width: calc(100vw - 2vmax);
-    max-height: calc(100vh - 2vmax - 2.25rem);
+  .ModalButtonClose:hover::before {
+    background-color: hsl(var(--colorError));
   }
+}
+
+.ModalButtonClose:active {
+  color: hsl(var(--fontColor), 0.5);
+  background-color: hsl(var(--colorError), 0.2);
+}
+
+.ModalButtonClose:active::before {
+  background-color: hsl(var(--colorError), 0.5);
 }

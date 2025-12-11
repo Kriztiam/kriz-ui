@@ -2,11 +2,11 @@
   width: fit-content;
 }
 
-.ImageViewerContainer dialog:last-child div {
-  padding: 0;
+.ImageViewerContainer > dialog > div {
+  padding: 2rem 0 0;
 }
 
-.ImageViewerContainer dialog:last-child div img {
+.ImageViewerContainer > dialog > div img {
   object-fit: contain;
   max-width: calc(100vw - 2vmax);
   max-height: calc(100vh - 2vmax);

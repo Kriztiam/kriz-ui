@@ -51,7 +51,7 @@ export default function ImageViewer({
           <Expand />
         </span>
       </button>
-      <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+      <Modal title={alt} isOpen={isOpen} setIsOpen={setIsOpen}>
         {useNextImage ? (
           <Image src={src} alt={alt} layout="fill" objectFit="contain" />
         ) : (

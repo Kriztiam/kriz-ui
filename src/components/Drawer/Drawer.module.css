@@ -38,28 +38,37 @@
 
   width: 100%;
   margin-bottom: 0.5em;
-  background-image: linear-gradient(
-    225deg,
-    hsl(var(--colorError), 0.4) 60%,
-    transparent
-  );
+  background-color: hsl(var(--colorError), 0.4);
 }
 
 .DrawerDialog > button::before {
   --color: hsl(var(--colorError));
+}
 
-  clip-path: polygon(
-    0 var(--edgeSize),
-    var(--edgeSize) 0,
-    100% 0,
-    100% calc(100% - var(--edgeSize)),
-    calc(100% - var(--edgeSize)) 100%,
-    calc(100% - var(--separation)) calc(100% - var(--borderWidth)),
-    calc(100% - var(--borderWidth)) calc(100% - var(--separation)),
-    calc(100% - var(--borderWidth)) var(--borderWidth),
-    var(--separation) var(--borderWidth),
-    var(--borderWidth) var(--separation)
-  );
+.DrawerDialog > button:focus-visible {
+  background-color: hsl(var(--colorError), 0.6);
+}
+
+.DrawerDialog > button:focus-visible::before {
+  background-color: hsl(var(--colorError));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .DrawerDialog > button:hover {
+    background-color: hsl(var(--colorError), 0.6);
+  }
+
+  .DrawerDialog > button:hover::before {
+    background-color: hsl(var(--colorError));
+  }
+}
+
+.DrawerDialog > button:active {
+  background-color: hsl(var(--colorError), 0.2);
+}
+
+.DrawerDialog > button:active::before {
+  background-color: hsl(var(--colorError), 0.5);
 }
 
 .Drawer li {

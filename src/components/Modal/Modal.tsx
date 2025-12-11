@@ -2,16 +2,17 @@
 
 import styles from "./Modal.module.css";
 import { useEffect, useRef } from "react";
-import Button from "@/components/Button/Button";
-import Card from "@/components/Card/Card";
+import Right from "@/assets/img/icons/Right.svg";
 import X from "@/assets/img/icons/X.svg";
 
 export default function Modal({
+  title,
   isOpen,
   setIsOpen,
   children,
   ...props
 }: {
+  title?: React.ReactNode;
   isOpen?: boolean;
   setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   children?: React.ReactNode;
@@ -43,19 +44,25 @@ export default function Modal({
         setIsOpen?.(false);
       }}
     >
-      <Button
-        outline
-        onClick={() => setIsOpen && setIsOpen(false)}
-        aria-label="Close modal"
-      >
-        <X />
-      </Button>
-      <Card
+      <div
         className={[styles.Modal, props.className].filter(Boolean).join(" ")}
         {...props}
       >
+        <div className={styles.ModalTitle}>
+          <span>
+            <Right />
+            {title}
+          </span>
+          <button
+            className={styles.ModalButtonClose}
+            onClick={() => setIsOpen && setIsOpen(false)}
+            aria-label="Close modal"
+          >
+            <X />
+          </button>
+        </div>
         {children}
-      </Card>
+      </div>
     </dialog>
   );
 }
